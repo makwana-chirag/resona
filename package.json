@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/makwana-chirag/resona/issues"
   },
-  "homepage": "https://github.com/makwana-chirag/resona#readme"
+  "homepage": "https://github.com/makwana-chirag/resona#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.29.2"
+  }
 }
