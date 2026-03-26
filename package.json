@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "react-native start",
     "mobile": "npm --workspace apps/mobile run start",
     "android": "npm --workspace apps/mobile run android",
     "ios": "npm --workspace apps/mobile run ios"
@@ -25,6 +26,10 @@
   },
   "homepage": "https://github.com/makwana-chirag/resona#readme",
   "dependencies": {
-    "@babel/runtime": "^7.29.2"
+    "@babel/runtime": "^7.29.2",
+    "@react-navigation/bottom-tabs": "^7.15.7",
+    "@react-navigation/native": "^7.2.0",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-screens": "^4.24.0"
   }
 }
