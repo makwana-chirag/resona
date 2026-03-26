@@ -1,12 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React from 'react';
+import { StatusBar, StyleSheet, useColorScheme, View, Text } from 'react-native'; // Added Text
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -27,11 +20,12 @@ function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+    <View style={[
+      styles.container, 
+      { paddingTop: safeAreaInsets.top, paddingBottom: safeAreaInsets.bottom }
+    ]}>
+      <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#333' }}>Welcomed to Resona</Text>
+      <Text style={styles.subtitle}>Start editing App.tsx to build your app.</Text>
     </View>
   );
 }
@@ -39,6 +33,19 @@ function AppContent() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 10,
   },
 });
 
