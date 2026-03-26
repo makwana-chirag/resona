@@ -5,7 +5,7 @@ import { TabNavigator } from './navigation/TabNavigator';
 function App() {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <TabNavigator navigation={null as any} />
     </NavigationContainer>
   );
 }
