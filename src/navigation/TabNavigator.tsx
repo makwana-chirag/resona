@@ -20,19 +20,19 @@ export const TabNavigator = () => {
   <Tab.Navigator
   screenOptions={{
     tabBarStyle: {
-      position: 'absolute', // CRITICAL: Content must scroll under the bar
+      position: 'absolute',
       bottom: 30,
       marginHorizontal: 20,
       height: 64,
       borderRadius: 24,
       borderTopWidth: 0,
-      backgroundColor: 'transparent', // Make the container transparent
-      elevation: 0, // Remove Android shadow
+      backgroundColor: 'transparent',
+      elevation: 0,
     },
     tabBarBackground: () => (
       <BlurView
-        intensity={80} // How "frosted" the glass is
-        tint="light"   // 'light', 'dark', or 'extraLight'
+        intensity={80} 
+        tint="light"
         style={{
           ...StyleSheet.absoluteFillObject,
           borderRadius: 24,
