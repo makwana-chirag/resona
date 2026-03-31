@@ -1,7 +1,7 @@
 import React from 'react';
 import { BlurView } from '@react-native-community/blur'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Music, ListMusic, BarChart3 } from 'lucide-react-native';
+import { Home, Music, ListMusic, BarChart3, Search } from 'lucide-react-native';
 import { HomeScreen, LibraryScreen, PlaylistScreen, StatsScreen } from '../screens';
 import IconWrapper from './components/IconWrapper';
 import { StyleSheet } from 'react-native';
@@ -12,7 +12,7 @@ const HomeIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={fo
 const LibraryIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={focused} Icon={Music} />;
 const PlaylistIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={focused} Icon={ListMusic} />;
 const StatsIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={focused} Icon={BarChart3} />;
-
+const SearchIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={focused} Icon={Search} />;
 
 export const TabNavigator = () => {
   
@@ -52,6 +52,11 @@ export const TabNavigator = () => {
         name="Library" 
         component={LibraryScreen} 
         options={{ tabBarIcon: LibraryIcon }} 
+      />
+        <Tab.Screen 
+        name="Search" 
+        component={LibraryScreen} 
+        options={{ tabBarIcon: SearchIcon }} 
       />
       <Tab.Screen 
         name="Playlists" 
