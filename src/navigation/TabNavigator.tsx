@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Music, ListMusic, BarChart3, Search } from 'lucide-react-native';
 import { HomeScreen, LibraryScreen, PlaylistScreen, StatsScreen } from '../screens';
 import IconWrapper from './components/IconWrapper';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
