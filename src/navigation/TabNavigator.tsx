@@ -6,6 +6,23 @@ import { HomeScreen, LibraryScreen, PlaylistScreen, StatsScreen } from '../scree
 import IconWrapper from './components/IconWrapper';
 import { StyleSheet, Platform } from 'react-native';
 
+const styles = StyleSheet.create({
+  blurBackground: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 24,
+    overflow: 'hidden',
+    backgroundColor: Platform.OS === 'android' ? 'rgba(255, 255, 255, 0.7)' : 'transparent',
+  },
+});
+
+const TabBarBackground = () => (
+  <BlurView
+    intensity={80}
+    tint="light"
+    style={styles.blurBackground}
+  />
+);
+
 const Tab = createBottomTabNavigator();
 
 const HomeIcon = ({ focused }: { focused: boolean }) => <IconWrapper focused={focused} Icon={Home} />;
@@ -29,18 +46,7 @@ export const TabNavigator = () => {
       backgroundColor: 'transparent',
       elevation: 0,
     },
-    tabBarBackground: () => (
-      <BlurView
-        intensity={80} 
-        tint="light"
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          borderRadius: 24,
-          overflow: 'hidden',
-          backgroundColor: Platform.OS === 'android' ? 'rgba(255, 255, 255, 0.7)' : 'transparent',
-        }}
-      />
-    ),
+    tabBarBackground: TabBarBackground,
   }}
 >
       <Tab.Screen 
