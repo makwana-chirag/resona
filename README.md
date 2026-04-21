@@ -80,3 +80,14 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Install Dependencies and Setup
+
+| Component       | Library                                   | Why                    |
+| --------------- | ----------------------------------------- | ---------------------- |
+| Local DB        | react-native-sqlite-storage or op-sqlite  | SQLite for RN CLI      |
+| Google Sign-in  | @react-native-google-signin/google-signin | Required for Drive API |
+| Drive API       | react-native-google-drive-api-wrapper     | Makes Drive API easy   |
+| File access     | react-native-fs                           | Read/write local files |
+| Sharing         | react-native-share                        | Export JSON files      |
+| Document picker | react-native-document-picker              | Import JSON files      |
