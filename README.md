@@ -85,8 +85,10 @@ To learn more about React Native, take a look at the following resources:
 
 <!-- - music api - https://www.last.fm/api -->
 
-- music api - [Music Brainz](https://musicbrainz.org/)
-- music api - [Deezer](https://api.deezer.com) - currently useing for add / search (songs, artics & albums)
+<!-- stopped because different in scope -->
+<!-- - music api - [Music Brainz](https://musicbrainz.org/) -->
+<!-- stopped using deezer api because of geo location blocking -->
+<!-- - music api - [Deezer](https://api.deezer.com) - currently useing for add / search (songs, artics & albums)  -->
 
 ## Install Dependencies and Setup
 
@@ -102,3 +104,52 @@ To learn more about React Native, take a look at the following resources:
 | Icons           | lucide-react-native                       | Beautiful icons        |
 | HTTP Client     | axios                                     | Make HTTP requests     |
 | Api Cache       | react-query                               | Cache API responses    |
+
+# 1. Install Termux from F-Droid (NOT Play Store - Play Store version is outdated)
+
+# Download: https://f-droid.org/en/packages/com.termux/
+
+# 2. Open Termux and run:
+
+pkg update && pkg upgrade -y
+
+# 3. Install Python and FFmpeg
+
+pkg install python ffmpeg -y
+
+# 4. Install yt-dlp
+
+pip install yt-dlp
+
+# 5. Verify installation
+
+yt-dlp --version
+
+# Should output: 2024.xx.xx
+
+# 6. Find yt-dlp path (important for native module)
+
+which yt-dlp
+
+# Output: /data/data/com.termux/files/usr/bin/yt-dlp
+
+# 1. Install iSH from App Store
+
+# 2. Open iSH and run:
+
+apk update
+apk add python3 ffmpeg
+
+# 3. Install yt-dlp
+
+pip3 install yt-dlp
+
+# 4. Verify
+
+yt-dlp --version
+
+# 5. Get path
+
+which yt-dlp
+
+# Output: /usr/bin/yt-dlp
