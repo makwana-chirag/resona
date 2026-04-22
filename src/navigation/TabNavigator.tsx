@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BlurView } from '@react-native-community/blur'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Music, ListMusic, BarChart3, Search, Plus } from 'lucide-react-native';
 import { HomeScreen, LibraryScreen, PlaylistScreen, StatsScreen } from '../screens';
 import IconWrapper from './components/IconWrapper';
 import { StyleSheet, Platform, View, TouchableOpacity } from 'react-native';
+import { SearchModal } from './components/SearchModel';
 
 const styles = StyleSheet.create({
   blurBackground: {
@@ -64,7 +65,15 @@ const FloatingAddButton = ({ onPress }: { onPress: () => void }) => (
 
 
 export const TabNavigator = () => {
-  
+   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false);
+
+  const handleSearchPress = () => {
+    setIsSearchModalVisible(true);
+  };
+
+  const handleCloseSearch = () => {
+    setIsSearchModalVisible(false);
+  };
   return (
     <>
   <Tab.Navigator
@@ -108,7 +117,11 @@ export const TabNavigator = () => {
         options={{ tabBarIcon: StatsIcon }} 
         />
     </Tab.Navigator>
-    <FloatingAddButton onPress={() => {}} />
+    <FloatingAddButton onPress={handleSearchPress} />
+    <SearchModal 
+        visible={isSearchModalVisible} 
+        onClose={handleCloseSearch} 
+      />
     </>
   );
 };

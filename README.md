@@ -81,6 +81,12 @@ To learn more about React Native, take a look at the following resources:
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 
+## Third Party Public API's
+
+<!-- - music api - https://www.last.fm/api -->
+
+- music api - [Music Brainz](https://musicbrainz.org/)
+
 ## Install Dependencies and Setup
 
 | Component       | Library                                   | Why                    |
@@ -91,3 +97,5 @@ To learn more about React Native, take a look at the following resources:
 | File access     | react-native-fs                           | Read/write local files |
 | Sharing         | react-native-share                        | Export JSON files      |
 | Document picker | react-native-document-picker              | Import JSON files      |
+| Animation       | react-native-reanimated                   | Smooth animations      |
+| Icons           | lucide-react-native                       | Beautiful icons        |
