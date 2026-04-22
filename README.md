@@ -86,6 +86,7 @@ To learn more about React Native, take a look at the following resources:
 <!-- - music api - https://www.last.fm/api -->
 
 - music api - [Music Brainz](https://musicbrainz.org/)
+- music api - [Deezer](https://api.deezer.com) - currently useing for add / search (songs, artics & albums)
 
 ## Install Dependencies and Setup
 

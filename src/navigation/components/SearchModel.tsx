@@ -11,6 +11,10 @@ import {
   Animated, // Use React Native's built-in Animated
 } from 'react-native';
 import { X, Search as SearchIcon, User, Music, ListMusic } from 'lucide-react-native';
+import { useSearchAlbums, useSearchArtists, useSearchTracks } from '../../services/api/dezzer.queries';
+// import { useDebounce } from '../../hooks/useDebounce';
+// import { localDatabase } from '../../database/localDatabase';
+// import { TrackedSong } from '../../types/song';
 
 type SearchTab = 'artists' | 'albums' | 'songs';
 
@@ -21,8 +25,58 @@ interface SearchModalProps {
 
 export const SearchModal: React.FC<SearchModalProps> = ({ visible, onClose }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  console.log("🚀 ~ SearchModal ~ searchQuery:", searchQuery)
   const [activeTab, setActiveTab] = useState<SearchTab>('artists');
+//    const debouncedQuery = useDebounce(searchQuery, 500);
+
+  // React Query hooks with automatic caching
+  const artistsQuery = useSearchArtists(searchQuery);
+  console.log("🚀 ~ SearchModal ~ artistsQuery:", artistsQuery)
   
+  const albumsQuery = useSearchAlbums(searchQuery);
+  
+  
+  const tracksQuery = useSearchTracks(searchQuery);
+
+  // Get the current query based on active tab
+  const currentQuery = () => {
+    switch (activeTab) {
+      case 'artists': return artistsQuery;
+      case 'albums': return albumsQuery;
+      case 'songs': return tracksQuery;
+    }
+  };
+
+//   const { data: results = [], isLoading, isError, error, refetch, isFetching } = currentQuery();
+
+//   const handleSelectItem = async (item: any) => {
+//     if (activeTab === 'songs') {
+//       const trackedSong: TrackedSong = {
+//         id: `deezer_${item.id}`,
+//         deezerId: item.id,
+//         title: item.title,
+//         artist: item.artist.name,
+//         album: item.album.title,
+//         albumArt: item.album.cover_medium,
+//         addedAt: Date.now(),
+//         lastPlayedAt: 0,
+//         playCount: 0,
+//         totalDuration: item.duration,
+//         favorite: false
+//       };
+      
+//       await localDatabase.saveSong(trackedSong);
+//       onSongSelected?.(trackedSong);
+//     }
+//     onClose();
+//     setSearchQuery('');
+//   };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
+
   // Simple animation without worklets
   const slideAnim = useState(new Animated.Value(1000))[0];
 
