@@ -100,3 +100,5 @@ To learn more about React Native, take a look at the following resources:
 | Document picker | react-native-document-picker              | Import JSON files      |
 | Animation       | react-native-reanimated                   | Smooth animations      |
 | Icons           | lucide-react-native                       | Beautiful icons        |
+| HTTP Client     | axios                                     | Make HTTP requests     |
+| Api Cache       | react-query                               | Cache API responses    |
