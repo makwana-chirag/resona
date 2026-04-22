@@ -17,31 +17,33 @@ export const deezerKeys = {
   albumTracks: (id: number) => [...deezerKeys.all, 'album', id, 'tracks'] as const,
 };
 
-// Helper function to handle empty queries
+// Helper function to validate query
 const validateQuery = (query: string): boolean => {
   return !!(query && query.trim().length >= 2);
 };
 
 export const deezerService = {
-  // Search artists with Axios
+  // Search artists
   searchArtists: async (query: string): Promise<DeezerArtist[]> => {
     if (!validateQuery(query)) return [];
     
     try {
+      console.log('🔍 Searching artists for:', query);
       const response = await deezerClient.get<DeezerSearchResponse<DeezerArtist>>(
         '/search/artist',
         {
           params: {
             q: query,
-            limit: 50,
+            limit: 20, // Reduced limit for faster responses
           },
         }
       );
       
+      console.log('✅ Artists found:', response.data.data?.length || 0);
       return response.data.data || [];
     } catch (error) {
       console.error('Search artists error:', error);
-      throw error;
+      return [];
     }
   },
 
@@ -50,20 +52,22 @@ export const deezerService = {
     if (!validateQuery(query)) return [];
     
     try {
+      console.log('🔍 Searching albums for:', query);
       const response = await deezerClient.get<DeezerSearchResponse<DeezerAlbum>>(
         '/search/album',
         {
           params: {
             q: query,
-            limit: 50,
+            limit: 20,
           },
         }
       );
       
+      console.log('✅ Albums found:', response.data.data?.length || 0);
       return response.data.data || [];
     } catch (error) {
       console.error('Search albums error:', error);
-      throw error;
+      return [];
     }
   },
 
@@ -72,20 +76,32 @@ export const deezerService = {
     if (!validateQuery(query)) return [];
     
     try {
+      console.log('🔍 Searching tracks for:', query);
       const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
         '/search/track',
         {
           params: {
             q: query,
-            limit: 50,
+            limit: 20,
           },
         }
       );
       
+      console.log('✅ Tracks found:', response.data.data?.length || 0);
+      console.log('📊 Total tracks available:', response.data.total);
+      
+      // Log first track for debugging
+      if (response.data.data && response.data.data.length > 0) {
+        console.log('🎵 First track sample:', {
+          title: response.data.data[0].title,
+          artist: response.data.data[0].artist?.name,
+        });
+      }
+      
       return response.data.data || [];
     } catch (error) {
       console.error('Search tracks error:', error);
-      throw error;
+      return [];
     }
   },
 
@@ -125,59 +141,6 @@ export const deezerService = {
     } catch (error) {
       console.error('Get track error:', error);
       return null;
-    }
-  },
-
-  // Get artist's top tracks
-  getArtistTopTracks: async (artistId: number): Promise<DeezerTrack[]> => {
-    if (!artistId) return [];
-    
-    try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
-        `/artist/${artistId}/top`,
-        {
-          params: { limit: 20 }
-        }
-      );
-      return response.data.data || [];
-    } catch (error) {
-      console.error('Get artist top tracks error:', error);
-      return [];
-    }
-  },
-
-  // Get album tracks
-  getAlbumTracks: async (albumId: number): Promise<DeezerTrack[]> => {
-    if (!albumId) return [];
-    
-    try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
-        `/album/${albumId}/tracks`
-      );
-      return response.data.data || [];
-    } catch (error) {
-      console.error('Get album tracks error:', error);
-      return [];
-    }
-  },
-
-  // Batch requests (multiple requests in parallel)
-  batchSearch: async (query: string) => {
-    if (!validateQuery(query)) {
-      return { artists: [], albums: [], tracks: [] };
-    }
-
-    try {
-      const [artists, albums, tracks] = await Promise.all([
-        deezerService.searchArtists(query),
-        deezerService.searchAlbums(query),
-        deezerService.searchTracks(query),
-      ]);
-
-      return { artists, albums, tracks };
-    } catch (error) {
-      console.error('Batch search error:', error);
-      throw error;
     }
   },
 };
