@@ -1,3 +1,6 @@
+# Enable New Architecture (React Native 0.84.0+ defaults to this)
+ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
@@ -7,6 +10,9 @@ require Pod::Executable.execute_command('node', ['-p',
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
+
+# Add React Native Reanimated source
+source 'https://cdn.cocoapods.org/'
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -20,7 +26,8 @@ target 'mobile' do
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    :app_path => "#{Pod::Config.instance.installation_root}/..",
+    :new_arch_enabled => true
   )
 
   post_install do |installer|
@@ -30,5 +37,12 @@ target 'mobile' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+    
+    # Ensure New Architecture is disabled
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['RCT_NEW_ARCH_ENABLED'] = '0'
+      end
+    end
   end
 end
