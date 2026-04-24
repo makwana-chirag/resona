@@ -1,16 +1,8 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { TabNavigator } from './navigation/TabNavigator';
-import { QueryProvider } from './provider/QueryProvider';
+import YTDLPExample from './components/YTDLPExample';
 
 function App() {
-  return (
-    <QueryProvider>
-      <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
-    </QueryProvider>
-  );
+  return <YTDLPExample />;
 }
 
 export default App;
