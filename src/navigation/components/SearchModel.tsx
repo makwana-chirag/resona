@@ -11,7 +11,8 @@ import {
   Animated, // Use React Native's built-in Animated
 } from 'react-native';
 import { X, Search as SearchIcon, User, Music, ListMusic } from 'lucide-react-native';
-import { useSearchAlbums, useSearchArtists, useSearchTracks } from '../../services/api/dezzer.queries';
+import { useSearchAlbums, useSearchTracks } from '../../services/api/deezer/dezzer.queries';
+import { useSearchArtists } from '../../services/api/hooks/search.queries';
 // import { useDebounce } from '../../hooks/useDebounce';
 // import { localDatabase } from '../../database/localDatabase';
 // import { TrackedSong } from '../../types/song';
@@ -32,10 +33,32 @@ export const SearchModal: React.FC<SearchModalProps> = ({ visible, onClose }) =>
   // React Query hooks with automatic caching
   const artistsQuery = useSearchArtists(searchQuery);
   console.log("🚀 ~ SearchModal ~ artistsQuery:", artistsQuery)
-  
+
+  // const apiCall = async () => {
+// ✅ Correct - await the response and parse JSON
+// const response = await fetch("http://localhost:4000/api/v1/search", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//     query: searchQuery,
+//   }),
+// });
+
+// const data = await response.json(); // Parse the JSON body
+  // console.log("🚀 ~ SearchModal ~ data:", data);
+  // console.log("Songs:", data.songs);
+// }
+
   const albumsQuery = useSearchAlbums(searchQuery);
   
-  
+// useEffect(() => {
+//   if(searchQuery.length > 2) {
+//     apiCall();
+//   }
+// },[searchQuery])
+
   const tracksQuery = useSearchTracks(searchQuery);
 
   // Get the current query based on active tab

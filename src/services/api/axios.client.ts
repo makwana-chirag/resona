@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { DEEZER_API_BASE_URL, DEEZER_API_TIMEOUT } from '@env';
+import { API_BASE_URL, API_TIMEOUT } from '@env';
 import { Platform } from 'react-native';
 
 // Create axios instance with default config
-export const deezerClient = axios.create({
-  baseURL: DEEZER_API_BASE_URL,
-  timeout: parseInt(DEEZER_API_TIMEOUT || '10000', 10),
+export const axiosClient = axios.create({
+  baseURL: `${API_BASE_URL}/api/v1`,
+  timeout: parseInt(API_TIMEOUT || '10000', 10),
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -21,7 +21,7 @@ export const deezerClient = axios.create({
 });
 
 // Request interceptor - Add loading indicators, auth, etc.
-deezerClient.interceptors.request.use(
+axiosClient.interceptors.request.use(
   (config) => {
     // You can add loading state here
     console.log(`🌐 API Request: ${config.method?.toUpperCase()} ${config.url}`);
@@ -39,7 +39,7 @@ deezerClient.interceptors.request.use(
 );
 
 // Response interceptor - Handle errors globally
-deezerClient.interceptors.response.use(
+axiosClient.interceptors.response.use(
   (response) => {
     console.log(`✅ API Success: ${response.config.url} - Status: ${response.status}`);
     return response;

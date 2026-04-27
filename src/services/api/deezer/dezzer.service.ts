@@ -1,10 +1,10 @@
-import { deezerClient } from './axios.client';
+import { axiosClient } from '../axios.client';
 import type { 
   DeezerArtist, 
   DeezerAlbum, 
   DeezerTrack,
   DeezerSearchResponse 
-} from '../api/dezzer.type';
+} from './dezzer.type';
 
 // Cache keys for React Query
 export const deezerKeys = {
@@ -28,7 +28,7 @@ export const deezerService = {
     if (!validateQuery(query)) return [];
     
     try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerArtist>>(
+      const response = await axiosClient.get<DeezerSearchResponse<DeezerArtist>>(
         '/search/artist',
         {
           params: {
@@ -50,7 +50,7 @@ export const deezerService = {
     if (!validateQuery(query)) return [];
     
     try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerAlbum>>(
+      const response = await axiosClient.get<DeezerSearchResponse<DeezerAlbum>>(
         '/search/album',
         {
           params: {
@@ -72,7 +72,7 @@ export const deezerService = {
     if (!validateQuery(query)) return [];
     
     try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
+      const response = await axiosClient.get<DeezerSearchResponse<DeezerTrack>>(
         '/search/track',
         {
           params: {
@@ -94,7 +94,7 @@ export const deezerService = {
     if (!id) return null;
     
     try {
-      const response = await deezerClient.get<DeezerArtist>(`/artist/${id}`);
+      const response = await axiosClient.get<DeezerArtist>(`/artist/${id}`);
       return response.data;
     } catch (error) {
       console.error('Get artist error:', error);
@@ -107,7 +107,7 @@ export const deezerService = {
     if (!id) return null;
     
     try {
-      const response = await deezerClient.get<DeezerAlbum>(`/album/${id}`);
+      const response = await axiosClient.get<DeezerAlbum>(`/album/${id}`);
       return response.data;
     } catch (error) {
       console.error('Get album error:', error);
@@ -120,7 +120,7 @@ export const deezerService = {
     if (!id) return null;
     
     try {
-      const response = await deezerClient.get<DeezerTrack>(`/track/${id}`);
+      const response = await axiosClient.get<DeezerTrack>(`/track/${id}`);
       return response.data;
     } catch (error) {
       console.error('Get track error:', error);
@@ -133,7 +133,7 @@ export const deezerService = {
     if (!artistId) return [];
     
     try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
+      const response = await axiosClient.get<DeezerSearchResponse<DeezerTrack>>(
         `/artist/${artistId}/top`,
         {
           params: { limit: 20 }
@@ -151,7 +151,7 @@ export const deezerService = {
     if (!albumId) return [];
     
     try {
-      const response = await deezerClient.get<DeezerSearchResponse<DeezerTrack>>(
+      const response = await axiosClient.get<DeezerSearchResponse<DeezerTrack>>(
         `/album/${albumId}/tracks`
       );
       return response.data.data || [];
