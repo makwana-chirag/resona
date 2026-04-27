@@ -101,3 +101,4 @@ To learn more about React Native, take a look at the following resources:
 | Icons           | lucide-react-native                       | Beautiful icons        |
 | HTTP Client     | axios                                     | Make HTTP requests     |
 | Api Cache       | react-query                               | Cache API responses    |
+| Player          | react-native-track-player                 | Music player           |

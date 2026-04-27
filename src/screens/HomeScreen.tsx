@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import AudioPlayer from '../components/audio-player/AudioPlayer';
 
 const { width } = Dimensions.get('window');
 
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
 export const HomeScreen = () => (
   <ScrollView style={styles.container}>
     <View style={styles.content}>
+      <AudioPlayer />
       <Text style={styles.title}>Your Music Stats</Text>
       
       {/* Stats Overview */}
